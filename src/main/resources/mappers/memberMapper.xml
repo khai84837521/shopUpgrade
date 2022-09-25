@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shopUpdate.mappers.memberMapper">
+    <select id="loginPro" resultType="com.shopUpdate.domain.MemberDTO">
+        SELECT * FROM member WHERE memId = #{memId} AND memPw=#{memPw}
+    </select>
+
+    <select id="userSelectOne" resultType="String">
+        SELECT * FROM member WHERE ${column} = #{userInfo}
+    </select>
+
+    <insert id="insertMember">
+        INSERT INTO member(memId, memPw, memNm, mal_cert, email, phone, birthDt, zipcode, address, addressSub, addressReference, Accumulation, date) VALUES(#{memId}, #{memPw}, #{memNm}, #{mal_cert}, #{email}, #{phone}, #{birthDt}, #{zipcode}, #{address}, #{addressSub}, #{addressReference}, #{Accumulation}, #{date})
+    </insert>
+
+    <select id = "findId" resultType="String">
+        SELECT memId FROM member WHERE memNm = #{memNm} AND birthDt = #{birthDt} AND email = #{email}
+    </select>
+
+    <delete id = "deleteMember">
+        DELETE FROM member WHERE memId = #{memId} AND memPw = #{memPw} AND memNm = #{memNm}
+    </delete>
+
+    <update id="memberPassChange">
+        UPDATE member SET memPw = #{memPw} WHERE memId = #{memId}
+    </update>
+</mapper>
