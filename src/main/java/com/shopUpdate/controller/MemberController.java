@@ -1,6 +1,10 @@
 package com.shopUpdate.controller;
 
+import com.shopUpdate.common.enums.Message;
+import com.shopUpdate.common.enums.RedirectUrl;
 import com.shopUpdate.domain.MemberDTO;
+import com.shopUpdate.exception.BaseException;
+import com.shopUpdate.exception.ErrorCode;
 import com.shopUpdate.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,16 +28,14 @@ public class MemberController {
 
     @PostMapping("/joinPro")
     public String joinPro(MemberDTO memberDTO, Model model){
-        int result = memberService.memberInsert(memberDTO);
-
-        if(result == 1){
-            return "/member/test";
-        }else{
-            model.addAttribute("msg", "회원가입 중 오류가 발생하였습니다.");
-            model.addAttribute("url", "/member/join");
-            return "msgBox";
+        try {
+            memberService.memberInsert(memberDTO);
+        } catch (Exception e) {
+            throw new BaseException(ErrorCode.MEMBER_JOIN_FAIL, RedirectUrl.MEMBER_JOIN.getUrl());
         }
-
+        model.addAttribute("msg", Message.MEMBER_JOIN.getMessage());
+        model.addAttribute("url", RedirectUrl.MAIN.getUrl());
+        return "msgBox";
     }
 
     @PostMapping("/joinIdCheck")
@@ -60,23 +62,27 @@ public class MemberController {
 
     //로그인
     @PostMapping("/loginPro")
-    public String loginPro(MemberDTO memberDTO, Model model, HttpSession session){
+    public String loginPro(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
 
         memberDTO = memberService.loginPro(memberDTO);
-
-        if(memberDTO == null) {
-            System.out.println("로그인 실패");
-            model.addAttribute("msg" , "로그인 실패!");
-            model.addAttribute("url", "/login");
-            return "msgBox";
-        }else{
-            session.setAttribute("userInfo", memberDTO);
-            System.out.println(memberDTO.getMemNm());
-            model.addAttribute("msg" , "로그인 성공!");
-            model.addAttribute("url", "/main");
-            return "msgBox";
-        }
-
+        if(memberDTO == null) throw new BaseException(ErrorCode.MEMBER_LOGIN_FAIL, "/login");
+//        if(memberDTO == null) {
+//            System.out.println("로그인 실패");
+//            model.addAttribute("msg" , "로그인 실패!");
+//            model.addAttribute("url", "/login");
+//            return "msgBox";
+//        }else{
+//            session.setAttribute("userInfo", memberDTO);
+//            System.out.println(memberDTO.getMemNm());
+//            model.addAttribute("msg" , "로그인 성공!");
+//            model.addAttribute("url", "/main");
+//            return "msgBox";
+//        }
+        session.setAttribute("userInfo", memberDTO);
+        System.out.println(memberDTO.getMemNm());
+        model.addAttribute("msg" , "로그인 성공!");
+        model.addAttribute("url", "/main");
+        return "msgBox";
     }
 
     @GetMapping("/logout")
@@ -144,7 +150,7 @@ public class MemberController {
     }
 
     @GetMapping("/memberInfo")
-    public String memberInfo(){
+    public String memberInfo(Model model){
         return "member/info";
     }
 

@@ -44,4 +44,10 @@
         </property>
     </bean>
 
+    <bean class="com.shopUpdate.common.ExceptionAdvice">
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.shopUpdate.mapper" />
+    </bean>
 </beans>

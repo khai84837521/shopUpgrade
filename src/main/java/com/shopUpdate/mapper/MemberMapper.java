@@ -1,14 +1,11 @@
-package com.shopUpdate.service;
+package com.shopUpdate.mapper;
 
 import com.shopUpdate.domain.MemberDTO;
 
-
-
-public interface MemberService {
+public interface MemberMapper {
+    String userSelectOne(MemberDTO memberDTO);
     MemberDTO loginPro(MemberDTO memberDTO);
-    String userIdCheck(String userId);
-    int memberInsert(MemberDTO memberDTO);
-    String userEmailCheck(String email);
+    int insertMember(MemberDTO memberDTO);
     String findId(MemberDTO memberDTO);
     int deleteMember(MemberDTO memberDTO);
     int memberPassChange(MemberDTO memberDTO);
