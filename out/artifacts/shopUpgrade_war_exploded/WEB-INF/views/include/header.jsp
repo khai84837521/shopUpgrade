@@ -27,6 +27,16 @@
 		crossorigin="anonymous"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/check.js"></script>
+    <link id="gs-icon-font" rel="stylesheet" href="${pageContext.request.contextPath}/resources/testResource/style.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/resources/testResource/common.min.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/testResource/jquery.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/resources/testResource/common.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/resources/testResource/lb4gs.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/resources/testResource/shop.min.css">
 </head>
 <!-- <script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
@@ -338,4 +348,3 @@
                 </div>
             </div>
         </header><!-- header -->
-        

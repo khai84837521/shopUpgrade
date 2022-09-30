@@ -1,9 +1,9 @@
 package com.shopUpdate.service;
 
+import com.shopUpdate.controller.product.form.SearchProduct;
 import com.shopUpdate.domain.ProductDTO;
 import com.shopUpdate.mapper.ProdListMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -27,6 +27,16 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<ProductDTO> productListPopular() {
         return prodListMapper.productListPopular();
+    }
+
+    @Override
+    public List<ProductDTO> getProductList(SearchProduct searchProduct, int cateCode) {
+        return prodListMapper.selectProductList(searchProduct, cateCode);
+    }
+
+    @Override
+    public int getProductListCount(SearchProduct searchProduct, int cateCode) {
+        return prodListMapper.countProductList(searchProduct, cateCode);
     }
 }
 

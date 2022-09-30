@@ -17,4 +17,23 @@ public class CategoryServiceImpl implements CategoryService{
         return categoryMapper.cateList();
     }
 
+    @Override
+    public List<CategoryDTO> getCateList() {
+        return categoryMapper.selectCateList();
+    }
+
+    @Override
+    public CategoryDTO getParentCate(int cateCode) {
+        return categoryMapper.selectParentCate(cateCode);
+    }
+
+    @Override
+    public List<CategoryDTO> getSubCate(int cateCode) {
+        return categoryMapper.selectSubCateList(cateCode);
+    }
+
+    @Override
+    public CategoryDTO getCate(int cateCode) {
+        return categoryMapper.selectCate(cateCode);
+    }
 }
