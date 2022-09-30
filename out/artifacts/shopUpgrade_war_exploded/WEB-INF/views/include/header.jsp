@@ -301,202 +301,29 @@
                                     </a>
                                 </li>
                                 <!-- 하위메뉴 -->
+                                <c:forEach items = "${cateList}" var="mainCateList" varStatus="status">
+                                <c:if test="${mainCateList.parent_cate_code == 0}">
                                 <li class="cate0">
                                 <!-- 대분류 -->
                                     <a href="${pageContext.request.contextPath}/sub?c=a&l=A&keyword=&s=&e=&sK=">
                                         <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i0.png">
+                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i${status.index}.png">
                                         </span>
-                                        <span class="ca_t">홍삼</span>
+                                        <span class="ca_t">${mainCateList.cate_name}</span>
                                     </a>
 	                                    <ol>
-			                                <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'a'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
+			                                <c:forEach items="${cateList}" var="subCateList">
+                                                <c:if test="${mainCateList.cate_code == subCateList.parent_cate_code}">
+                                                 <li>
+                                                     <a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${subCateList.cate_name}</a>
+                                                 </li>
+                                                </c:if>
 			                                </c:forEach>
 	                                    </ol>
+
                                 </li>
-                         	  <li class="cate2">
-                                    <a href="${pageContext.request.contextPath}/sub?c=b&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i2.png">
-                                        </span>
-                                        <span class="ca_t">인삼/수삼</span>
-                                    </a>
-                                     <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'b'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li>
-                                <li class="cate3">
-                                    <a href="${pageContext.request.contextPath}/sub?c=c&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i3.png">
-                                        </span>
-                                        <span class="ca_t">건강즙</span>
-                                    </a>
-                                    <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'c'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li>
-                                <li class="cate4">
-                                    <a href="${pageContext.request.contextPath}/sub?c=d&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i4.png">
-                                        </span>
-                                        <span class="ca_t">건강환</span>
-                                    </a>
-                                    <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'd'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li>
-                                <li class="cate5">
-                                    <a href="${pageContext.request.contextPath}/sub?c=e&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i5.png">
-                                        </span>
-                                        <span class="ca_t">비타민C</span>
-                                    </a>
-                                     <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'e'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li> 
-                                 <li class="cate6">
-                                    <a href="${pageContext.request.contextPath}/sub?c=f&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i5.png">
-                                        </span>
-                                        <span class="ca_t">유산균</span>
-                                    </a>
-                                     <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'f'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li>
-                                <li class="cate6">
-                                    <a href="${pageContext.request.contextPath}/sub?c=f&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i5.png">
-                                        </span>
-                                        <span class="ca_t">루테인</span>
-                                    </a>
-                                     <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'g'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li> 
-                                 <li class="cate7">
-                                    <a href="${pageContext.request.contextPath}/sub?c=h&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i5.png">
-                                        </span>
-                                        <span class="ca_t">오메가3</span>
-                                    </a>
-                                     <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'h'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li> 
-                                <li class="cate8">
-                                    <a href="${pageContext.request.contextPath}/sub?c=i&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i5.png">
-                                        </span>
-                                        <span class="ca_t">프로폴리스</span>
-                                    </a>
-                                     <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'i'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li>
-                                <li class="cate9">
-                                    <a href="${pageContext.request.contextPath}/sub?c=m&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i5.png">
-                                        </span>
-                                        <span class="ca_t">영양제</span>
-                                    </a>
-                                     <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'm'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li>
-                                <li class="cate10">
-                                    <a href="${pageContext.request.contextPath}/sub?c=j&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i5.png">
-                                        </span>
-                                        <span class="ca_t">엽산</span>
-                                    </a>
-                                     <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'j'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li> 
-                                <li class="cate11">
-                                    <a href="${pageContext.request.contextPath}/sub?c=k&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i5.png">
-                                        </span>
-                                        <span class="ca_t">철분</span>
-                                    </a>
-                                     <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'k'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li>  
-                                <li class="cate12">
-                                    <a href="${pageContext.request.contextPath}/sub?c=i&l=A&keyword=&s=&e=&sK=">
-                                        <span class="ca_i">
-                                            <img src="${pageContext.request.contextPath}/resources/images/ca_i5.png">
-                                        </span>
-                                        <span class="ca_t">칼숨/초유</span>
-                                    </a>
-                                     <ol>
-                                     <c:forEach items="${menuCategory}" var="CartegoryDTO">
-			                                    <c:if test="${CartegoryDTO.cateCodeRef eq 'i'}">
-	                                   			     <li><a href="${pageContext.request.contextPath}/sub?c=${CartegoryDTO.cateCode}&l=B&keyword=&s=&e=&sK=">${CartegoryDTO.cateName}</a></li>
-				                                 </c:if>
-			                          </c:forEach>
-                                    </ol>
-                                </li> 
+                                </c:if>
+                                </c:forEach>
                             </ul>
                         </div>
 

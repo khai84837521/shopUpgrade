@@ -6,6 +6,7 @@ import com.shopUpdate.domain.MemberDTO;
 import com.shopUpdate.exception.BaseException;
 import com.shopUpdate.exception.ErrorCode;
 import com.shopUpdate.service.MemberService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,7 +87,7 @@ public class MemberController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session, Model model){
+    public String logout(@NotNull HttpSession session, @NotNull Model model){
         session.invalidate();
         model.addAttribute("url", "/main");
         model.addAttribute("msg", "로그아웃 되었습니다.");
@@ -116,7 +117,7 @@ public class MemberController {
     }
 
     @PostMapping("/findIdOk")
-    public String findIdOk(MemberDTO memberDTO, Model model){
+    public String findIdOk(MemberDTO memberDTO, @NotNull Model model){
         String memId = memberService.findId(memberDTO);
         model.addAttribute("memId",  memId);
         return "member/findIdOk";
@@ -141,7 +142,7 @@ public class MemberController {
     }
 
     @PostMapping("/passChangePro")
-    public String passChangePro(MemberDTO memberDTO, Model model){
+    public String passChangePro(MemberDTO memberDTO, @NotNull Model model){
         System.out.println("MemberController::passChange");
         memberService.memberPassChange(memberDTO);
         model.addAttribute("msg", "비밀번호가 변경되었습니다.");
@@ -154,7 +155,7 @@ public class MemberController {
         return "member/info";
     }
 
-    @GetMapping
+    @GetMapping("/cart")
     public String memberCart(){
         return "member/cart";
     }

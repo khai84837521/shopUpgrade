@@ -89,25 +89,25 @@
             <div class="main_newpro_wrap innerContent">
                 <div class="main_title">
                     <a href="${pageContext.request.contextPath}/sub_new">
-                    <strong>오늘의 신상품</strong></a>
+                    <strong>신상품</strong></a>
                     <p>새로 입고된 제품을 확인해보세요</p>
                 </div>
                 <div class="item-display-wrap">
-                    <div class="item-display type-cart clear cboth">
-                        <div class="swiper proslide01 list innerContent">
-                           		<!-- 상품목록 -->
-                           		<ul class="swiper-wrapper">
-								<c:forEach var="ListDTO" items="${getTodayNewList}">
-									<li class="swiper-slide line_4">
-										<%@ include file="include/list.jsp"%>
-									</li>
-								</c:forEach>
-								</ul>
-								<!-- 상품목록 끝-->
-                        </div><!-- proslide01 -->
-                        <div class="swiper-button-next swiper-button-next-pro"></div>
-                        <div class="swiper-button-prev swiper-button-prev-pro"></div>
-                    </div><!-- item-display -->
+                            <div class="item-display type-cart clear cboth">
+                                <div class="swiper proslide01 list innerContent">
+                                    <!-- 상품목록 -->
+                                    <ul class="swiper-wrapper">
+                                        <c:forEach var="productList" items="${newProductList}">
+                                            <li class="swiper-slide line_4">
+                                                <%@ include file="include/list.jsp"%>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                    <!-- 상품목록 끝-->
+                                </div><!-- proslide01 -->
+                                <div class="swiper-button-next swiper-button-next-pro"></div>
+                                <div class="swiper-button-prev swiper-button-prev-pro"></div>
+                            </div><!-- item-display -->
                 </div><!-- item-display-wrap -->
             </div><!-- 신상품 슬라이드 -->
 
@@ -126,88 +126,47 @@
                     <div class="item-display type-cart clear cboth">
                         <div class="itemlist_wrap">
                             <div class="tab_btn">
-                                <p class="active"><span>건강기능식품</span></p>
-                                <p><span>홍삼</span></p>
-                                <p><span>즙류</span></p>
-                                <p><span>비타민</span></p>
-                                <p><span>캡슐/분말</span></p>
+                                <p class="active" onclick="cateCodeSearch(0)"><span>전체</span></p>
+                                <c:forEach var="cateList" items="${cateList}">
+                                    <c:if test="${cateList.parent_cate_code == 0}">
+                                        <p onclick="cateCodeSearch('${cateList.cate_code}')"><span>${cateList.cate_name}</span></p>
+<%--                                        <input hidden id="mainCateCode" value="${mainCategoryList.cate_code}">--%>
+                                    </c:if>
+                                </c:forEach>
+
                             </div>
                             <div class="tab_con_wrap">
-                                <div class="tab_con active">
+                                <div id ="popularProdList" class="tab_con active">
                                     <div class="swiper proslide01 list innerContent">
-                                    <!-- 건강기능식품 -->
+                                    <!-- 전체 -->
                                         <ul class="swiper-wrapper">
-                                        	<c:forEach items="${getHealthList}" var="ListDTO">
+                                        	<c:forEach items="${productListPopular}" var="productList">
                                             <li class="swiper-slide line_4">
                                                 <%@ include file="include/list.jsp"%>
                                             </li>
                                             </c:forEach>
                                         </ul>
-                                        <!-- 건강기능식품끝 -->
+                                    <!-- 전체 -->
                                     </div><!-- proslide01 -->
                                     <div class="swiper-button-next swiper-button-next-pro"></div>
                                     <div class="swiper-button-prev swiper-button-prev-pro"></div>
                                 </div>
-                                <div class="tab_con">
-                                    <div class="swiper proslide01 list innerContent">
-                                    <!-- 가공식품 -->
-                                        <ul class="swiper-wrapper">
-                                        	<c:forEach items="${getProcessedList}" var="ListDTO">
-	                                            <li class="swiper-slide line_4">
-	                                                <%@ include file="include/list.jsp"%>
-	                                            </li>
-	                                         </c:forEach>   
-                                        </ul>
-                                   <!-- 가공식품 끝 -->
-                                    </div>
-                                    <div class="swiper-button-next swiper-button-next-pro"></div>
-                                    <div class="swiper-button-prev swiper-button-prev-pro"></div>
-                                </div>
-                                <div class="tab_con">
-                                    <div class="swiper proslide01 list innerContent">
-                                    <!-- 신선식품 -->
-                                        <ul class="swiper-wrapper">
-                                            <c:forEach items="${getfreshList}" var="ListDTO">
-	                                            <li class="swiper-slide line_4">
-	                                                <%@ include file="include/list.jsp"%>
-	                                            </li>
-	                                         </c:forEach>  
-                                        </ul>
-                                    <!-- 신선식품 끝-->
-                                    </div>
-                                    <div class="swiper-button-next swiper-button-next-pro"></div>
-                                    <div class="swiper-button-prev swiper-button-prev-pro"></div>
-                                </div>
-                                <div class="tab_con">
-                                    <div class="swiper proslide01 list innerContent">
-                                      <!-- 차/티백 -->
-                                        <ul class="swiper-wrapper">
-                                            <c:forEach items="${getTeaList}" var="ListDTO">
-	                                            <li class="swiper-slide line_4">
-	                                                <%@ include file="include/list.jsp"%>
-	                                            </li>
-	                                         </c:forEach>  
-                                        </ul>
-                                   	 <!--  차/티백 끝-->
-                                    </div>
-                                    <div class="swiper-button-next swiper-button-next-pro"></div>
-                                    <div class="swiper-button-prev swiper-button-prev-pro"></div>
-                                </div>
-                                <div class="tab_con">
-                                    <div class="swiper proslide01 list innerContent">
-                                     <!-- 생활잡화 -->
-                                        <ul class="swiper-wrapper">
-                                            <c:forEach items="${getDailyList}" var="ListDTO">
-	                                            <li class="swiper-slide line_4">
-	                                                <%@ include file="include/list.jsp"%>
-	                                            </li>
-	                                         </c:forEach>  
-                                        </ul>
-                                   	 <!--생활잡화 끝-->
-                                    </div>
-                                    <div class="swiper-button-next swiper-button-next-pro"></div>
-                                    <div class="swiper-button-prev swiper-button-prev-pro"></div>
-                                </div>
+                                <script>
+                                    function cateCodeSearch(cateCode){
+                                        $.ajax({
+                                            url : "<c:url value="/main/cateCodeSearch"/>?cateCode="+cateCode,
+                                            type : "GET",
+                                            success : function(html){
+                                                $("#popularProdList").empty();
+                                                $("#popularProdList").append(html);
+                                                $("#popularProdList").addClass("active");
+
+                                            }
+                                        });
+                                    }
+                                </script>
+
+
                             </div>
                         </div>
                         <!--.itemlist_wrap-->
@@ -237,39 +196,6 @@
                 </div>
             </div><!-- 메인 동영상  -->
 
-            <div class="main_bestpro_wrap innerContent">
-                <div class="main_title">
-                    <a href="#"><strong>주간 BEST</strong></a>
-                    <p>새로 입고된 제품을 확인해보세요</p>
-
-                </div>
-                <div class="item-display-wrap">
-                    <div class="item-display">
-                        <div class="item-best01">
-                            <div class="list">
-                                <ul class="">
-                                	<c:forEach var="ListDTO" items="${weekBestList}" end="0">
-                                    <li class="line_1">
-                                    	<%@ include file="include/list.jsp"%>
-                                    </li>
-                             		</c:forEach>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="item-best02">
-                            <div class="list">
-                                <ul class="">
-                                <c:forEach var="ListDTO" items="${weekBestList}" begin="1">
-                                    <li class="line_2">
-                                        <%@ include file="include/list.jsp"%>
-                                    </li>
-                                  </c:forEach>  
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- 주간 베스트상품  -->
 
            <div id="main_bn02">
                 <a href="" class="pc_only"><img src="${pageContext.request.contextPath}/resources/images/main_bn02_pc.jpg" alt="메인 띠배너"></a>
