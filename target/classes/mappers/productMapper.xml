@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shopUpdate.mapper.ProdListMapper">
+    <select id="newProductList" resultType="com.shopUpdate.domain.ProductDTO">
+        SELECT * FROM product ORDER BY create_dt DESC LIMIT 10
+    </select>
+
+
+    <select id="productListPopular" resultType="com.shopUpdate.domain.ProductDTO">
+        SELECT
+            *
+        FROM product
+        ORDER BY ((order_count/view_count)*(60/100))+((star_count/5)*(30/100))+((zzim/1000)*(10/100)) DESC
+            LIMIT 10
+    </select>
+
+    <select id="productListCateSearchPopular" resultType="com.shopUpdate.domain.ProductDTO">
+        SELECT
+            p.product_id product_id,
+            p.title title,
+            p.thumbnail thumbnail,
+            p.cate_code cate_code,
+            p.zzim zzim,
+            p.star_count star_count,
+            p.prod_des_img prod_des_img,
+            p.price price,
+            p.discount_price discount_price,
+            p.brand brand,
+            p.create_dt create_dt,
+            p.order_count order_count,
+            p.view_count view_count
+        FROM product p
+                 JOIN goods_category c
+                      ON p.cate_code = c.cate_code
+        <if test="cateCode > 0">
+            WHERE c.parent_cate_code = #{cateCode}
+        </if>
+        ORDER BY ((p.order_count/p.view_count)*(60/100))+((p.star_count/5)*(30/100))+((p.zzim/1000)*(10/100)) DESC
+            LIMIT 10
+    </select>
+
+</mapper>

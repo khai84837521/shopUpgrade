@@ -8,5 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum Message {
     MEMBER_JOIN("회원가입 되었습니다.");
 
-    private String message;
+    private final String message;
+
+
 }
