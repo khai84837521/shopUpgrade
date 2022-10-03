@@ -8,4 +8,24 @@
         SELECT * FROM goods_category
     </select>
 
+    <select id="selectCateList" resultType="com.shopUpdate.domain.CategoryDTO">
+        SELECT cate_code, cate_name FROM goods_category WHERE parent_cate_code = 0
+    </select>
+
+    <select id="selectParentCate" resultType="com.shopUpdate.domain.CategoryDTO">
+        SELECT pc.cate_code
+            , pc.cate_name
+        FROM goods_category c
+            JOIN goods_category pc on c.parent_cate_code = pc.cate_code
+        WHERE c.cate_code = #{cateCode}
+    </select>
+
+    <select id="selectSubCateList" resultType="com.shopUpdate.domain.CategoryDTO">
+        SELECT cate_code, cate_name FROM goods_category WHERE parent_cate_code = #{parentCateCode}
+    </select>
+
+    <select id="selectCate" resultType="com.shopUpdate.domain.CategoryDTO">
+        SELECT * FROM goods_category WHERE cate_code = #{cateCode}
+    </select>
+
 </mapper>

@@ -42,4 +42,89 @@
             LIMIT 10
     </select>
 
+    <select id="selectProductList" resultType="com.shopUpdate.domain.ProductDTO">
+        SELECT *
+        FROM product p
+        JOIN goods_category gc on p.cate_code = gc.cate_code
+        WHERE
+        1 = 1
+        <if test="searchProduct.keyword != null">
+            AND p.title LIKE CONCAT('%', #{searchProduct.keyword}, '%')
+        </if>
+        <if test="searchProduct.minPrice != null and searchProduct.maxPrice != null">
+            AND p.price &lt;= #{searchProduct.maxPrice} AND p.price &gt;= #{searchProduct.minPrice}
+        </if>
+        <if test="searchProduct.searchCateList != null and searchProduct.searchCateList.length > 0">
+            AND p.cate_code IN (
+            <foreach collection="searchProduct.searchCateList" item="searchCateCode" separator=",">
+                #{searchCateCode}
+            </foreach>
+            )
+        </if>
+
+        ORDER BY
+        <choose>
+            <when test="searchProduct.orderType != null">
+                <if test="searchProduct.orderType eq 'popular'">
+                    ((p.order_count/p.view_count)*(60/100))+((p.star_count/5)*(30/100))+((p.zzim/1000)*(10/100)) DESC
+                </if>
+                <if test="searchProduct.orderType eq 'minPrice'">
+                    p.price ASC
+                </if>
+                <if test="searchProduct.orderType eq 'maxPrice'">
+                    p.price DESC
+                </if>
+                <if test="searchProduct.orderType eq 'recent'">
+                    p.create_dt DESC
+                </if>
+            </when>
+            <otherwise>
+                p.create_dt DESC
+            </otherwise>
+        </choose>
+        LIMIT #{searchProduct.startPage}, #{searchProduct.pageSize};
+    </select>
+
+    <select id="countProductList" resultType="int">
+        SELECT COUNT(1)
+        FROM product p
+        JOIN goods_category gc on p.cate_code = gc.cate_code
+        WHERE
+            1 = 1
+        <if test="searchProduct.keyword != null">
+            AND p.title LIKE CONCAT('%', #{searchProduct.keyword}, '%')
+        </if>
+        <if test="searchProduct.minPrice != null and searchProduct.maxPrice != null">
+            AND p.price &lt;= #{searchProduct.maxPrice} AND p.price &gt;= #{searchProduct.minPrice}
+        </if>
+        <if test="searchProduct.searchCateList != null and searchProduct.searchCateList.length > 0">
+            AND p.cate_code IN (
+                <foreach collection="searchProduct.searchCateList" item="searchCateCode" separator=",">
+                    #{searchCateCode}
+                </foreach>
+            )
+        </if>
+
+        ORDER BY
+        <choose>
+            <when test="searchProduct.orderType != null">
+                <if test="searchProduct.orderType eq 'popular'">
+                    ((p.order_count/p.view_count)*(60/100))+((p.star_count/5)*(30/100))+((p.zzim/1000)*(10/100)) DESC
+                </if>
+                <if test="searchProduct.orderType eq 'minPrice'">
+                    p.price ASC
+                </if>
+                <if test="searchProduct.orderType eq 'maxPrice'">
+                    p.price DESC
+                </if>
+                <if test="searchProduct.orderType eq 'recent'">
+                    p.create_dt DESC
+                </if>
+            </when>
+            <otherwise>
+                p.create_dt DESC
+            </otherwise>
+        </choose>
+
+    </select>
 </mapper>
