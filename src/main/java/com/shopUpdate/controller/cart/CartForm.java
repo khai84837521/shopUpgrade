@@ -9,6 +9,6 @@ public class CartForm {
     private int productId;
     private String prodTitle;
     private int prodPrice;
-    private String prod_thumbnail;
+    private String prodThumbnail;
     private int amount;
 }
