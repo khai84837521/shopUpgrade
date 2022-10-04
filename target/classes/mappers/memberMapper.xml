@@ -5,7 +5,7 @@
 
 <mapper namespace="com.shopUpdate.mapper.MemberMapper">
     <select id="loginPro" resultType="com.shopUpdate.domain.MemberDTO">
-        SELECT * FROM member WHERE memId = #{memId} AND memPw=#{memPw}
+        SELECT * FROM member WHERE member_id = #{member_id} AND memPw=#{memPw}
     </select>
 
     <select id="userSelectOne" resultType="String">

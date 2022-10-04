@@ -38,5 +38,11 @@ public class ProductServiceImpl implements ProductService{
     public int getProductListCount(SearchProduct searchProduct, int cateCode) {
         return prodListMapper.countProductList(searchProduct, cateCode);
     }
+
+
+    @Override
+    public ProductDTO getProductGoods(int productId) {
+        return prodListMapper.selectProductGoods(productId);
+    }
 }
 

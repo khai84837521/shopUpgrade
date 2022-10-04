@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopUpdate.mapper.CartMapper">
+    <select id="selectCartCount" resultType="int">
+        SELECT COUNT(*) FROM cart WHERE member_id = #{memberId}
+    </select>
+
+    <select id="selectCartList" resultType="com.shopUpdate.domain.CartDTO">
+        SELECT * FROM cart WHERE
+            member_id = #{memberId}
+    </select>
+
+    <select id = "selectCartOne" resultType="com.shopUpdate.domain.CartDTO">
+        SELECT amount FROM cart WHERE member_id = #{memberId} AND product_id = #{productId}
+    </select>
+
+    <insert id="insertCart">
+        INSERT INTO cart(member_id, product_id, prod_title, prod_price, prod_thumbnail, amount) VALUES (#{memberId}, #{productId}, #{prodTitle},#{prodPrice}, #{prodThumbnail}, #{amount})
+    </insert>
+
+    <update id="updateCart">
+        UPDATE cart SET amount = {CartDTO.amount} WHERE member_id = #{CartDTO.memberId} AND product_id = #{CartDTO.productId}
+    </update>
+
+    <delete id = "deleteCart">
+        DELETE FROM cart WHERE member_id = #{memberId} AND product_id = #{productId}
+    </delete>
+
+    <delete id="deleteAllCart">
+        DELETE FROM cart WHERE member_id = #{memberId}
+    </delete>
+
+</mapper>

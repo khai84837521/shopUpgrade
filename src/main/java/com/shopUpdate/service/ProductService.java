@@ -14,4 +14,6 @@ public interface ProductService {
     List<ProductDTO> getProductList(SearchProduct searchProduct, int cateCode);
 
     int getProductListCount(SearchProduct searchProduct, int cateCode);
+
+    ProductDTO getProductGoods(int productId);
 }

@@ -145,26 +145,23 @@ function CartdeleteAll(){
 }
 
 
-function insertCart(){
-	
-		$.ajax({
-		type: 'POST', //요청 메소드 방식
-		url:'insertCart',
-		async: false, // ajax 통신이 끝날때까지 기다리기
-		data:{
-			"amount" : $('#topQuantitySpinner').val(),
-			"goodsNo" : $('#goodsNo').val()
-		}, //서버가 요청 URL을 통해서 응답하는 내용의 타입
-		success : function(result){
-			if(result  == 1){
-				alert('상품이 장바구니에 담겼습니다.');
-				count();
-			}else{
-				alert('실패');
-			}
-		}	
+function addCart(){
+	var addCartParam = $('#addCartParam').serialize();
+	var amount = "&amount="+$('#topQuantitySpinner').val();
+	var cartDTO = addCartParam + amount;
+	alert(cartDTO);
+	$.ajax({
+	    url : "/cart/add",
+	    type : "POST",
+	    data : cartDTO,
+	    dataType : 'json',
+	    async: false,
+	    success : function(cartCount){
+			$('#cartCount').empty();
+	        $('#cartCount').append(cartCount);
+	    }
 	});
-}	
+}
 
 function count(){
 	var count;

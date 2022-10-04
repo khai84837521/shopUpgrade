@@ -15,4 +15,6 @@ public interface ProdListMapper {
     List<ProductDTO> selectProductList(@Param(value = "searchProduct") SearchProduct searchProduct, @Param(value = "cateCode") int cateCode);
 
     int countProductList(@Param(value = "searchProduct") SearchProduct searchProduct, @Param(value = "cateCode") int cateCode);
+
+    ProductDTO selectProductGoods(int productId);
 }

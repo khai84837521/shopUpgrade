@@ -127,4 +127,9 @@
         </choose>
 
     </select>
+
+
+    <select id="selectProductGoods" resultType="com.shopUpdate.domain.ProductDTO">
+        SELECT * FROM product WHERE product_id = #{prodcutId}
+    </select>
 </mapper>

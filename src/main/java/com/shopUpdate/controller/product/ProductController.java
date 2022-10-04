@@ -3,6 +3,7 @@ package com.shopUpdate.controller.product;
 import com.shopUpdate.controller.product.form.SearchProduct;
 import com.shopUpdate.controller.product.view.ProductView;
 import com.shopUpdate.domain.CategoryDTO;
+import com.shopUpdate.domain.ProductDTO;
 import com.shopUpdate.service.CategoryService;
 import com.shopUpdate.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,13 @@ public class ProductController {
         model.addAttribute("productView", productView);
         model.addAttribute("searchProduct", searchProduct);
         return "/product/product-list-data";
+    }
+
+
+    @GetMapping("/goods/{productId}")
+    public String productDetail(@PathVariable int productId, Model model){
+        ProductDTO productGoods = productService.getProductGoods(productId);
+        model.addAttribute("productGoods", productGoods);
+        return "/goods_view";
     }
 }

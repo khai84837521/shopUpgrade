@@ -80,7 +80,6 @@ public class MemberController {
 //            return "msgBox";
 //        }
         session.setAttribute("userInfo", memberDTO);
-        System.out.println(memberDTO.getMemNm());
         model.addAttribute("msg" , "로그인 성공!");
         model.addAttribute("url", "/main");
         return "msgBox";
@@ -118,8 +117,8 @@ public class MemberController {
 
     @PostMapping("/findIdOk")
     public String findIdOk(MemberDTO memberDTO, @NotNull Model model){
-        String memId = memberService.findId(memberDTO);
-        model.addAttribute("memId",  memId);
+        String memberId = memberService.findId(memberDTO);
+        model.addAttribute("memberId",  memberId);
         return "member/findIdOk";
     }
 
@@ -155,9 +154,5 @@ public class MemberController {
         return "member/info";
     }
 
-    @GetMapping("/cart")
-    public String memberCart(){
-        return "member/cart";
-    }
 
 }

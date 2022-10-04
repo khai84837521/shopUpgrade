@@ -57,7 +57,7 @@
 									<div class="column">
 										<strong class="title">회원아이디</strong>
 										<div class="gridPosition">
-											<input type="text" placeholder="아이디를 입력해 주세요." class="fText suffix" title="아이디" name="memId" id="mall_id" value="" tabindex="1" maxlength="20">
+											<input type="text" placeholder="아이디를 입력해 주세요." class="fText suffix" title="아이디" name="member_id" id="mall_id" value="" tabindex="1" maxlength="20">
 										</div>
 									</div>
 									<div class="column">

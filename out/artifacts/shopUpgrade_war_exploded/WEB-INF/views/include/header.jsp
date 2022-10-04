@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">  
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sub.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">    
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/check.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/checkBox.js"></script>
@@ -27,49 +27,18 @@
 		crossorigin="anonymous"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/check.js"></script>
+    <link id="gs-icon-font" rel="stylesheet" href="${pageContext.request.contextPath}/resources/testResource/style.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/resources/testResource/common.min.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/testResource/jquery.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/resources/testResource/common.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/resources/testResource/lb4gs.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/resources/testResource/shop.min.css">
 </head>
-<!-- <script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 
-<script type="text/javascript">
- 	 	
- 	// <input type="button" value="dup. check" class="dup"> 클릭했을때 
- 	// html 문서가 실행이 준비 되면 => 동작
- 	$(document).ready(function(){	
- 		// 버튼을 클릭했을때 		
-//  			alert("클릭이벤트");
-				// idCheck2.jsp에 아이디를 들고 가서  아이디를 중복체크 아이디 중복, 아이디 사용가능 출력
-			$.getJSON('${pageContext.request.contextPath}/mainRank',function(rdata){
-					//#dupdiv 대상에  가져온 값을 출력
-					$.each(rdata,function(index,item){
-						$('#ranking').append("<div class='swiper-slide rankitem'>"+item.keyword+"</div>");						
-					});					
-				
-			});	 		
- 	});
-
-
-
-
- 	/* 리스트 ajax */
-	$(document).ready(function(){	
-	 	
-		$.getJSON('${pageContext.request.contextPath}/test',function(dated){
-				$.each(dated,function(index,item){
-				
-	$('#middle').attr("src",item.imagePath); //이미지
-	$('.title').append(item.goodsNm); //상품명
-	$('.del').append(item.fixedPrice+"원");//정가
-	$('#middle').attr(index);//한번정지
-
-					});//each
-// 				$(this).unbind();
-				}); //json
-				//이벤트를 한번만 수행하고 멈춤
-		});
-	/* 끝 리스트 ajax */
-	
- </script>
  
  <body>
  <div id="mainLayout">
@@ -89,7 +58,7 @@
                     </div>
                       <div class="util_menu">
                     	<c:choose>
-                    	<c:when test ="${sessionScope.userInfo.memId == null}">
+                    	<c:when test ="${sessionScope.userInfo.member_id == null}">
 	                    	<ul>
 	                            <li><a href="${pageContext.request.contextPath}/login">로그인</a></li>
 	                            <li><a href="${pageContext.request.contextPath}/join">회원가입</a></li>
@@ -100,10 +69,11 @@
                     	<c:otherwise>
                     	<ul>
                             <li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
-                            <li><a>${sessionScope.userInfo.memId}님</a></li>
+                            <li><a>${sessionScope.userInfo.memNm}님</a></li>
                             <li><a href="${pageContext.request.contextPath}/mypage">마이페이지</a></li>
                             <li><a href="${pageContext.request.contextPath}/board/flist">고객센터</a></li>
                         </ul>
+                            <input type="hidden" id="memberId" value="${sessionScope.userInfo.member_id}">
                     	</c:otherwise>
                     	</c:choose>
                     </div>
@@ -115,52 +85,6 @@
            
                         <div class="menuSide">
                
-                            <!--aside_menu2-->
-
-                            <div class="aside_navigation_wrap">
-                                <div class="aside_title">카테고리</div>
-                                <!-- ++++++++ 카테고리 ++++++++ -->
-                                <ul id="categorySideMenu" class="menu">
-                                    <li class="mitem category mitem_category mitemicon1">
-                                        <a class="mitem_title" href="" target="_self"></a>
-                                        <a class="mitem_goodsview" href="">
-                                            건강기능식품
-                                        </a>
-                                    </li>
-                                    <li class="mitem category mitem_category mitemicon1">
-                                        <a class="mitem_title" href="" target="_self"></a>
-                                        <a class="mitem_goodsview" href="">
-                                            건강가공식품
-                                        </a>
-                                    </li>
-                                    <li class="mitem category mitem_category mitemicon1">
-                                        <a class="mitem_title" href="" target="_self"></a>
-                                        <a class="mitem_goodsview" href="">
-                                            가공식품
-                                        </a>
-                                    </li>
-                                    <li class="mitem category mitem_category mitemicon3">
-                                        <a class="mitem_title" href="" target="_self"></a>
-                                        <a class="mitem_goodsview" href="">
-                                            잡화
-                                        </a>
-                                    </li>
-                                    <li class="mitem category mitem_category mitemicon1">
-                                        <a class="mitem_title" href="" target="_self"></a>
-                                        <a class="mitem_goodsview" href="">
-                                            기타상품
-                                        </a>
-                                    </li>
-                                    <li class="mitem category mitem_category mitemicon1">
-                                        <a class="mitem_title" href="" target="_self"></a>
-                                        <a class="mitem_goodsview" href="">
-                                            사은품
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!-- ++++++++ //카테고리 ++++++++ -->
-                            </div>
-                            <!--aside_navigation_wrap-->
 
                             <div class="right_cs">
                                 <div class="tle">고객 센터</div>
@@ -210,18 +134,7 @@
 								</tr>
 							</table>
 							
-   <script>
-   /* 인기검색어 슬라이드 넘어가기 */
-      var swiper = new Swiper(".rankwrap", {
-        direction: "vertical",
-        autoplay: {
-    		delay: 1000,
-    		disableOnInteraction: false,
-    	},
-    	speed: 1000,
-      });
-    </script>
-    
+
                     <div class="top_search">
                         <form name="frmSearchTop" id="frmSearchTop" action="${pageContext.request.contextPath}/sub" method="get" novalidate="novalidate" >
                             <input type="hidden"  value="" name="c">
@@ -272,7 +185,7 @@
 
                     <div class="buttonArea">
                         <ul>                           
-                            <li><a href="${pageContext.request.contextPath}/cart" class="cart">장바구니<span id="cartCount2" class="count">0</span></a></li>
+                            <li><a href="${pageContext.request.contextPath}/cart" class="cart">장바구니<span id="cartCount" class="count">0</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -338,4 +251,54 @@
                 </div>
             </div>
         </header><!-- header -->
-        
+
+
+
+ <script type="text/javascript">
+
+     // <input type="button" value="dup. check" class="dup"> 클릭했을때
+     // html 문서가 실행이 준비 되면 => 동작
+     $(document).ready(function(){
+         // 버튼을 클릭했을때
+//  			alert("클릭이벤트");
+         // idCheck2.jsp에 아이디를 들고 가서  아이디를 중복체크 아이디 중복, 아이디 사용가능 출력
+         $.getJSON('${pageContext.request.contextPath}/mainRank',function(rdata){
+             //#dupdiv 대상에  가져온 값을 출력
+             $.each(rdata,function(index,item){
+                 $('#ranking').append("<div class='swiper-slide rankitem'>"+item.keyword+"</div>");
+             });
+
+         });
+     });
+
+
+
+
+     /* 리스트 ajax */
+     $(document).ready(function(){
+
+         $.getJSON('${pageContext.request.contextPath}/test',function(dated){
+             $.each(dated,function(index,item){
+
+                 $('#middle').attr("src",item.imagePath); //이미지
+                 $('.title').append(item.goodsNm); //상품명
+                 $('.del').append(item.fixedPrice+"원");//정가
+                 $('#middle').attr(index);//한번정지
+
+             });//each
+// 				$(this).unbind();
+         }); //json
+         //이벤트를 한번만 수행하고 멈춤
+     });
+     /* 끝 리스트 ajax */
+
+     /* 인기검색어 슬라이드 넘어가기 */
+     var swiper = new Swiper(".rankwrap", {
+         direction: "vertical",
+         autoplay: {
+             delay: 1000,
+             disableOnInteraction: false,
+         },
+         speed: 1000,
+     });
+ </script>

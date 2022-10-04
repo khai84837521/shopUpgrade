@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MemberDTO {
-    private String memId;
+    private String member_id;
     private String memPw;
     private String memNm;
     private String date;
