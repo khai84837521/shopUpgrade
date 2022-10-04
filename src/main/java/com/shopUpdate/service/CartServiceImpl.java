@@ -1,12 +1,12 @@
 package com.shopUpdate.service;
 
-import com.shopUpdate.controller.cart.CartView;
 import com.shopUpdate.domain.CartDTO;
 import com.shopUpdate.mapper.CartMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService{
@@ -14,11 +14,8 @@ public class CartServiceImpl implements CartService{
     private CartMapper cartMapper;
 
     @Override
-    public void getCartList(String memberId) {
-        CartView cartView = new CartView();
-        cartView.setCartCount(cartMapper.selectCartCount(memberId));
-        cartView.setCartList(cartMapper.selectCartList(memberId));
-
+    public List<CartDTO> getCartList(String memberId) {
+        return cartMapper.selectCartList(memberId);
     }
 
     @Override
@@ -48,5 +45,10 @@ public class CartServiceImpl implements CartService{
         cartMapper.deleteAllCart(memberId);
         int cartCount = cartMapper.selectCartCount(memberId);
         return cartCount;
+    }
+
+    @Override
+    public int getCartCount(String memberId) {
+        return cartMapper.selectCartCount(memberId);
     }
 }

@@ -8,7 +8,15 @@
     </select>
 
     <select id="selectCartList" resultType="com.shopUpdate.domain.CartDTO">
-        SELECT * FROM cart WHERE
+        SELECT
+               cartId as cartId,
+               member_id as memberId,
+               product_id as productId,
+               prod_title as prodTitle,
+               prod_price as prodPrice,
+               prod_thumbnail as prodThumbnail,
+               amount as amount
+        FROM cart WHERE
             member_id = #{memberId}
     </select>
 

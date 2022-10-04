@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/cart")
@@ -23,15 +22,17 @@ public class CartController {
         String memberId = memberDTO.getMember_id();
 
         if(memberId != null){
-            cartService.getCartList(memberId);
-            CartView cartView = new CartView();
+            CartView cartView = CartView.builder()
+                    .cartCount(cartService.getCartCount(memberId))
+                    .cartList(cartService.getCartList(memberId))
+                    .build();
             model.addAttribute("cartCount",cartView.getCartCount());
             model.addAttribute("cartList", cartView.getCartList());
-            return "member/cart";
+            return "/member/cart";
         }else{
             model.addAttribute("url", "/member/login");
             model.addAttribute("msg", "로그인 후에 이용해주세요");
-            return  "msgBox";
+            return  "/msgBox";
         }
     }
 

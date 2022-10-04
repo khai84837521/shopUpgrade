@@ -185,7 +185,7 @@
 
                     <div class="buttonArea">
                         <ul>                           
-                            <li><a href="${pageContext.request.contextPath}/cart" class="cart">장바구니<span id="cartCount" class="count">0</span></a></li>
+                            <li><a href="${pageContext.request.contextPath}/cart" class="cart">장바구니<span id="cartCount" class="count">${cartCount}</span></a></li>
                         </ul>
                     </div>
                 </div>

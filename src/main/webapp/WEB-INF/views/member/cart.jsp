@@ -35,32 +35,32 @@
 		<!-- 제품리스트 1 -->
 		
 		<c:set value="0" var="totalPrice"/>	
-		<c:forEach var="carList" items="${cartList }" varStatus = "status">
-			<c:set value="${totalPrice + cartList.prodPrice*cartList.amount }" var="totalPrice"/>
+		<c:forEach var="cartDto" items="${cartList }" varStatus = "status">
+			<c:set value="${totalPrice + cartDto.prodPrice*cartDto.amount }" var="totalPrice"/>
 			<div class="cart_goods_box">				
 				<div class="goods_chk">
-					<input type="checkbox" checked="checked" name = "product" data-price="${cartList.prodPrice*cartList.amount }" value="${cartList.cartId }">
+					<input type="checkbox" checked="checked" name = "product" data-price="${cartDto.prodPrice*cartDto.amount }" value="${cartDto.cartId }">
 				</div><!-- goods_chk -->
 				<div class="cart_goods_list">
 					<div class="img_area">
-						<a href=""><img src="${cartList.prodThumbnail }" style="width:90%;" class="goods_thumb"></a>
+						<a href=""><img src="${cartDto.prodThumbnail }" style="width:90%;" class="goods_thumb"></a>
 					</div>
 					<div class="option_area">
 						<ul>
-							<li class="name">${cartList.prodTitle }</li>
-							<li class="baesong">수량 : <span name="amount">${cartList.amount }</span></li>
-							<li class="price_mo"><b>${cartList.prodPrice }</b>원</li>
+							<li class="name">${cartDto.prodTitle }</li>
+							<li class="baesong">수량 : <span name="amount">${cartDto.amount }</span></li>
+							<li class="price_mo"><b>${cartDto.prodPrice }</b>원</li>
 						</ul>
 					</div>
 				</div><!-- cart_goods_list -->
 				<div class="price_total">
 					<span class="ptitle">합계 : </span>
-					<span class="total_p"><b>${cartList.prodPrice*cartList.amount}</b>원</span>
+					<span class="total_p"><b>${cartDto.prodPrice*cartDto.amount}</b>원</span>
 				</div>
 				
 				<div class="btn_wrap">
 					<ul>
-						<li><button type="button" class="btn_cle btn_st_1" id = "delete_${cartList.cartId }"
+						<li><button type="button" class="btn_cle btn_st_1" id = "delete_${cartDto.cartId }"
 						onclick = "CartdeleteOne(this)">삭제</button></li>
 					</ul>
 				</div>
@@ -71,8 +71,8 @@
 <!-- 리스트 반복문	/////////////////////////////////////////////////////////////////////	 -->
 		<form action="cartOrder" method="post" id = "cartOrderSubmit">
 		<div id="cart_order_list">
-		<c:forEach var="cartList" items="${cartList }" varStatus = "status">
-			<input type="hidden" id="cartId${cartList.cartId }" name="cartId" value="${cartList.cartId }">
+		<c:forEach var="cartDto" items="${cartList }" varStatus = "status">
+			<input type="hidden" id="cartId${cartDto.cartId }" name="cartId" value="${cartDto.cartId }">
 		</c:forEach>
 		</div>
 		</form>

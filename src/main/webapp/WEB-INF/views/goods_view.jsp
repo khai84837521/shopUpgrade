@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@page import="org.apache.taglibs.standard.tag.common.xml.ForEachTag"%>
 
+<c:import url="/header"/>
 <link rel="stylesheet"
 	  href="${pageContext.request.contextPath}/resources/testResource/floating.css">
 <link rel="stylesheet"
@@ -181,20 +180,10 @@
 						<div class="btnCart">
 							<button type="button" class="buy_wish" onclick="" name="buyBtn">찜</button>
 							<div class="btn">
-								<c:choose>
-									<c:when test="${sessionScope.userInfo.member_id == null}">
-										<span><button type="button" class="btnSSG btnLineG"
-												onclick="MSG()">장바구니</button></span>
-										<span><button type="button" class="btnSSG action"
-												onclick="MSG()">구매하기</button></span>
-									</c:when>
-									<c:otherwise>
-										<span><button type="button" class="btnSSG btnLineG"
-												onclick="addCart()">장바구니</button></span>
-										<span><button type="button" class="btnSSG action"
-												name="buyBtn">구매하기</button></span>
-									</c:otherwise>
-								</c:choose>
+								<span><button type="button" class="btnSSG btnLineG"
+										onclick="addCart()">장바구니</button></span>
+								<span><button type="button" class="btnSSG action"
+										name="buyBtn">구매하기</button></span>
 							</div>
 						</div>
 						<!-- btnCart  -->

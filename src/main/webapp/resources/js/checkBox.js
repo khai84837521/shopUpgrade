@@ -149,7 +149,6 @@ function addCart(){
 	var addCartParam = $('#addCartParam').serialize();
 	var amount = "&amount="+$('#topQuantitySpinner').val();
 	var cartDTO = addCartParam + amount;
-	alert(cartDTO);
 	$.ajax({
 	    url : "/cart/add",
 	    type : "POST",
