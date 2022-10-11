@@ -7,6 +7,7 @@
     <groupId>com.shop</groupId>
     <artifactId>shopUpgrade</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -123,7 +124,11 @@
             <version>2.13.4</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.4.2</version>
+        </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
