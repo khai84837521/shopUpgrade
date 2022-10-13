@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>엉덩이가 큰 그녀</title>
+    <title>GH-SHOP</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/insertSearch.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">  
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
