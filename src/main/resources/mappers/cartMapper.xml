@@ -32,11 +32,11 @@
     </insert>
 
     <update id="updateCart">
-        UPDATE cart SET amount = {CartDTO.amount} WHERE member_id = #{CartDTO.memberId} AND product_id = #{CartDTO.productId}
+        UPDATE cart SET amount = #{amount} WHERE cartId= #{cartId}
     </update>
 
     <delete id = "deleteCart">
-        DELETE FROM cart WHERE member_id = #{memberId} AND product_id = #{productId}
+        DELETE FROM cart WHERE member_id = #{memberId} AND cartId = #{cartId}
     </delete>
 
     <delete id="deleteAllCart">

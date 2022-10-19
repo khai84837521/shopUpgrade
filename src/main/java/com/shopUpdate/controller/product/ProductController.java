@@ -4,8 +4,8 @@ import com.shopUpdate.controller.product.form.SearchProduct;
 import com.shopUpdate.controller.product.view.ProductView;
 import com.shopUpdate.domain.CategoryDTO;
 import com.shopUpdate.domain.ProductDTO;
-import com.shopUpdate.service.CategoryService;
-import com.shopUpdate.service.ProductService;
+import com.shopUpdate.service.category.CategoryService;
+import com.shopUpdate.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +26,12 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+
+    /**
+     * MAIN 카테고리 상품 리스트 조회 후 매핑
+     * @param searchProduct
+     * @return MAIN 카테고리 상품 리스트
+     */
     @GetMapping("/{cateCode}")
     public String listView(SearchProduct searchProduct, Model model, @PathVariable int cateCode){
         searchProduct.setCateCode(cateCode);
@@ -42,6 +48,11 @@ public class ProductController {
         return "/product/product-list";
     }
 
+    /**
+     * 상품 리스트 조건별 조회 후 매핑
+     * @param searchProduct
+     * @return 조건에 맞는 상품 리스트
+     */
     @GetMapping("/{cateCode}/list")
     public String list(SearchProduct searchProduct, Model model, @PathVariable int cateCode){
         if (searchProduct.getSearchCate() != null) {
@@ -67,7 +78,12 @@ public class ProductController {
         return "/product/product-list-data";
     }
 
-
+    /**
+     * 상품 상세정보 조회 후 페이지 매핑
+     * @param productId
+     * @param model
+     * @return 상품 상세정보
+     */
     @GetMapping("/goods/{productId}")
     public String productDetail(@PathVariable int productId, Model model){
         ProductDTO productGoods = productService.getProductGoods(productId);

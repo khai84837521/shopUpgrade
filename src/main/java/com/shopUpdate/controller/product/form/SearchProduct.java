@@ -25,3 +25,4 @@ public class SearchProduct {
         return (page - 1) * pageSize;
     }
 }
+

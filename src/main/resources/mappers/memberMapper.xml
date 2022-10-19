@@ -13,7 +13,7 @@
     </select>
 
     <insert id="insertMember">
-        INSERT INTO member(memId, memPw, memNm, mal_cert, email, phone, birthDt, zipcode, address, addressSub, addressReference, Accumulation, date) VALUES(#{memId}, #{memPw}, #{memNm}, #{malCert}, #{email}, #{phone}, #{birthDt}, #{zipcode}, #{address}, #{addressSub}, #{addressReference}, #{Accumulation}, #{date})
+        INSERT INTO member(memId, memPw, memNm, mal_cert, email, phone, birthDt, zipcode, address, addressSub, addressReference, Accumulation, date) VALUES(#{memId}, #{memPw}, #{memNm}, #{malCert}, #{email}, #{phone}, #{birthDt}, #{zipcode}, #{address}, #{addressSub}, #{addressReference}, #{Accumulation}, now())
     </insert>
 
     <select id = "findId" resultType="String">

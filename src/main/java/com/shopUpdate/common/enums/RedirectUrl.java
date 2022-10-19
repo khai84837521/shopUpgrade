@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum RedirectUrl {
     MAIN("/main", "메인 페이지"),
-    MEMBER_JOIN("/member/join", "회원가입 페이지");
+    MEMBER_JOIN("/member/join", "회원가입 페이지"),
+    LOGIN("/login", "로그인 페이지");
+
 
     private final String url;
     private final String description;

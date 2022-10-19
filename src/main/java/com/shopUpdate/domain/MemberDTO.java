@@ -6,6 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MemberDTO {
+    public static final String SESSION_NAME = "userInfo";
+
     private String member_id;
     private String memPw;
     private String memNm;
